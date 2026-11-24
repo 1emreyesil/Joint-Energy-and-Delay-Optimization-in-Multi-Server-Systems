@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+type: software
+title: "Calibrated Speed Scaling: Joint Energy and Delay Optimization in Multi-Server Systems"
+authors:
+  - family-names: Yesil
+    given-names: Emre
+year: 2026
+license: MIT
+repository-code: "https://github.com/1emreyesil/Joint-Energy-and-Delay-Optimization-in-Multi-Server-Systems"
+notes: "MSc thesis, Data Science, Sapienza University of Rome."
