@@ -34,7 +34,9 @@ GOOGLE_COV_C = 175.29                                          # thesis value, p
 # ---------- I/O ----------
 def _clean(obj):
     if isinstance(obj, dict):
-        return {str(k): _clean(v) for k, v in obj.items() if k != "runs"}
+        # drop per-seed run lists only; keep any other dict named "runs"
+        return {str(k): _clean(v) for k, v in obj.items()
+                if not (k == "runs" and isinstance(v, list))}
     if isinstance(obj, (list, tuple)):
         return [_clean(v) for v in obj]
     if isinstance(obj, np.ndarray):
@@ -68,7 +70,7 @@ def exp_psi(args):                            # cells 9, 14
     table = [dict(n=n, rho=r, cov=c, erlang_c=erlang_c(n, r), psi_mg1=psi_mg1(r, c),
                   psi_mgn=psi_mgn(n, r, c), psi_legacy=psi_mgn_legacy(n, r, c))
              for n, r, c in points]
-    save("psi", dict(runs=runs, table=table))
+    save("psi", dict(comparison=runs, table=table))
 
 
 def exp_kappa(args):                          # cells 16, 18, 32, 48 (merged)
